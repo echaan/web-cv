@@ -13,6 +13,48 @@ This document provides guidance for AI coding agents working on this portfolio/C
 
 ---
 
+## Git Policy
+
+Git operations are controlled by the user.
+
+The agent MUST NOT perform Git write or destructive operations unless explicitly instructed by the user.
+
+### Forbidden Git Operations
+
+Do NOT perform:
+- `git add`
+- `git commit`
+- `git push`
+- `git pull`
+- `git reset`
+- `git checkout`
+- `git switch`
+- `git merge`
+- `git rebase`
+- branch creation or deletion
+- commit amendment
+- force push
+- any other Git operation that modifies repository history, branches, or tracked files
+
+### Allowed Git Operations
+
+Read-only Git inspection is allowed:
+- `git status`
+- `git diff`
+- `git log`
+- `git branch`
+- `git remote -v`
+
+The agent must never:
+- automatically create commits
+- automatically push changes
+- automatically switch branches
+- modify Git history
+
+All Git write operations are performed manually by the user.
+
+---
+
 ## Mandatory Pre-Work
 
 ### 1. Read the Design Contract
