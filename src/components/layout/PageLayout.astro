@@ -1,0 +1,57 @@
+---
+// PageLayout: Two-column responsive wrapper
+// Establishes desktop two-column layout (profile/sidebar + main content)
+// and responsive single-column for smaller screens
+//
+// This component provides the structural foundation only.
+// Sidebar and Navigation UI are implemented separately.
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class={`page-container ${className || ''}`}>
+  <aside class="page-sidebar">
+    <slot name="sidebar" />
+  </aside>
+  <main class="page-main" id="main-content">
+    <slot />
+  </main>
+</div>
+
+<style>
+  .page-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: var(--space-8);
+  }
+
+  .page-sidebar {
+    margin-bottom: var(--space-12);
+  }
+
+  .page-main {
+    /* Main content area */
+  }
+
+  /* Desktop two-column layout at 1024px+ */
+  @media (min-width: 1024px) {
+    .page-container {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) 1fr;
+      gap: var(--column-gap);
+      align-items: start;
+    }
+
+    .page-sidebar {
+      margin-bottom: 0;
+    }
+
+    .page-main {
+      max-width: var(--main-content-max-width);
+    }
+  }
+</style>
