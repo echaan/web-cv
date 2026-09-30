@@ -1,0 +1,44 @@
+[
+  {
+    "category": "Programming Languages",
+    "skills": [
+      "Python",
+      "PHP"
+    ]
+  },
+  {
+    "category": "Data Analytics",
+    "skills": [
+      "Data Wrangling",
+      "EDA",
+      "Data Visualization",
+      "Machine Learning",
+      "SQL"
+    ]
+  },
+  {
+    "category": "Tools",
+    "skills": [
+      "Streamlit",
+      "GitHub",
+      "VS Code",
+      "Microsoft Excel",
+      "Google Sheets"
+    ]
+  },
+  {
+    "category": "Soft Skills",
+    "skills": [
+      "Problem-Solving",
+      "Analytic Thinking",
+      "Communication"
+    ]
+  },
+  {
+    "category": "Languages",
+    "skills": [
+      "Indonesian",
+      "English"
+    ]
+  }
+]

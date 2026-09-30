@@ -1,0 +1,19 @@
+{
+  "university": "Universitas Islam Negeri Sultan Syarif Kasim Riau",
+  "degree": "Bachelor's degree",
+  "major": "Information System",
+  "period": "Jul 2022 - June 2026",
+  "gpa": "3.88/4.0",
+  "coursework": [
+    "Data Analysis",
+    "Database Systems",
+    "Data Mining",
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Data Analytics",
+    "Software Engineering"
+  ],
+  "publication": {
+    "title": "Comparative Analysis of Machine Learning Algorithms for Obesity Level Prediction"
+  }
+}

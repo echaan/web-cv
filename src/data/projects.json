@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "sweetaware",
+    "title": "SweetAware",
+    "role": "Machine Learning Engineer",
+    "description": "Capstone project for Coding Camp powered by DBS Foundation, applying machine learning techniques to develop a data-driven solution.",
+    "tags": [
+      "Machine Learning",
+      "Python",
+      "Data Processing",
+      "Capstone Project"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "bike-sharing-analysis",
+    "title": "Bike Sharing Analysis",
+    "role": "Data Analyst",
+    "description": "Conducted end-to-end data analysis using Python on a bike-sharing dataset. Built an interactive Streamlit dashboard visualizing rental patterns across key variables. Delivered actionable insights translating raw data into decision-ready information.",
+    "tags": [
+      "Data Analysis",
+      "Python",
+      "Streamlit",
+      "Data Visualization",
+      "EDA"
+    ],
+    "featured": true
+  }
+]
