@@ -1351,3 +1351,186 @@ The user is responsible for reviewing the changes and creating the Phase 7 commi
 ### Next Phase
 
 Phase 8 should implement responsive behavior across layouts and components, then assemble the homepage using the Phase 6 and Phase 7 components.
+
+## Phase 8 — Responsive Behavior
+
+### Status
+
+Completed
+
+### Objective
+
+Audit and complete the responsive behavior of the existing CV website across the established viewport breakpoints.
+
+The phase preserved existing responsive rules that already conformed to the design contract and introduced only targeted changes where small-screen layout, spacing, or overflow issues were identified.
+
+No homepage assembly, `/projects` implementation, project detail pages, MDX case studies, or deployment work was performed.
+
+### Implementation
+
+Reviewed the existing layout, navigation, reusable UI, and section components for responsive behavior.
+
+The following files were modified:
+
+* `src/components/layout/PageLayout.astro`
+
+  * Reduced horizontal padding on small screens to preserve usable content width
+  * Added a 640px breakpoint for intermediate padding
+  * Restored the established `var(--space-8)` padding at the 1024px desktop breakpoint
+  * Added `min-width: 0` to `.page-main` to prevent grid content from forcing horizontal overflow
+  * Reduced sidebar bottom spacing from `var(--space-12)` to `var(--space-10)` for smaller layouts
+
+* `src/components/ui/MobileNav.astro`
+
+  * Removed the redundant `display: block` declaration from `.mobile-nav__link`
+  * Constrained the mobile dropdown width with a viewport-aware `max-width`
+  * Preserved the existing mobile navigation behavior and accessibility attributes
+
+* `src/components/ui/ProjectCard.astro`
+
+  * Reduced card padding to `var(--space-4)` on narrow screens
+  * Restored `var(--space-6)` padding at 480px and above
+  * Preserved the existing project card structure and visual treatment
+
+* `src/components/ui/SkillGroup.astro`
+
+  * Changed the skill group to a stacked layout below 480px
+  * Restored the existing two-column grid layout at 480px and above
+  * Removed the narrow-screen `white-space: nowrap` constraint from the category label and restored it for the wider layout
+
+### Responsive Rules Preserved
+
+The following existing responsive behavior was reviewed and retained:
+
+* `PageLayout` switches to the established two-column layout at `>=1024px`
+* `Nav` switches between desktop navigation and mobile navigation at `768px`
+* `MobileNav` maintains 44px minimum touch targets for the toggle and navigation links
+* `Sidebar` retains its responsive profile/photo sizing
+* `EntryCard` retains flexible wrapping for entry headers
+* `ProjectCard` retains flexible wrapping for tags and links
+* `CertificationsSection` retains flexible wrapping for certification entries
+* `ContactSection` retains flexible wrapping for contact items
+* `IconLink` retains `word-break: break-all` for long URLs
+* Tag collections retain wrapping behavior
+
+No new navigation system, layout system, or CSS framework was introduced.
+
+### Responsive Decisions
+
+1. **Small-screen page padding**
+
+   The original `PageLayout` used `var(--space-8)` padding at all viewport widths. At 320px this reduced the available content width unnecessarily.
+
+   The layout now uses:
+
+   * `<640px`: `var(--space-6) var(--space-4)`
+   * `640px–1023px`: `var(--space-8) var(--space-6)`
+   * `>=1024px`: `var(--space-8)`
+
+2. **Grid content overflow prevention**
+
+   `.page-main` now uses `min-width: 0` so that grid content can shrink within its assigned column instead of being forced beyond the available viewport width.
+
+3. **Mobile navigation width**
+
+   The mobile dropdown retains its existing absolute positioning but now has a viewport-aware maximum width to reduce the risk of horizontal overflow on narrow screens.
+
+4. **Skill group stacking**
+
+   The existing two-column skill layout could become cramped on very narrow screens because the category column used `max-content` and `white-space: nowrap`.
+
+   Below 480px, the category and skill tags are therefore stacked vertically. At 480px and above, the original two-column grid is restored.
+
+5. **Project card spacing**
+
+   Project cards use reduced internal padding below 480px to preserve usable content width on narrow screens, while retaining the original spacing at wider viewports.
+
+### Scope Decisions
+
+Phase 8 intentionally did not implement:
+
+* Homepage composition
+* Changes to `src/pages/index.astro`
+* `/projects` page
+* Project detail pages
+* Project case-study MDX files
+* New content or JSON changes
+* TypeScript interface changes
+* New section components
+* New UI primitives
+* CSS frameworks or styling dependencies
+* Final visual review
+* Deployment
+* Design contract changes
+
+Existing responsive behavior was preserved wherever it already met the design requirements.
+
+### Files Modified
+
+```text
+src/
+├── components/
+│   ├── layout/
+│   │   └── PageLayout.astro
+│   └── ui/
+│       ├── MobileNav.astro
+│       ├── ProjectCard.astro
+│       └── SkillGroup.astro
+```
+
+### Incidental Verification Changes
+
+* `.astro/types.d.ts` — auto-regenerated by Astro tooling during verification
+* This generated file was not part of the intended Phase 8 source changes and should be restored before the Phase 8 commit
+
+### Verification
+
+Commands run:
+
+```bash
+npx astro check
+npm run build
+git status --short
+git diff --name-only
+```
+
+Results:
+
+* `astro check`: 0 errors, 0 warnings, 0 hints (26 files)
+* `astro build`: successful
+* Git inspection identified four intended source files plus the auto-generated `.astro/types.d.ts`
+* The generated `.astro/types.d.ts` was subsequently identified as incidental and should not be committed
+
+The final manual diff review confirmed that the source changes were limited to responsive-related adjustments.
+
+### Git Workflow
+
+Git operations are handled manually by the user.
+
+No Git write operations were performed by the Agent during Phase 8.
+
+The user is responsible for restoring the generated `.astro/types.d.ts`, reviewing the final diff, and creating the Phase 8 commit manually.
+
+Recommended commit message:
+
+```text
+feat: complete responsive behavior
+```
+
+### Lessons / Decisions Carried Forward
+
+1. Responsive behavior should be handled by the component responsible for the relevant layout concern rather than duplicated across components.
+2. `Nav.astro` remains responsible for switching between desktop and mobile navigation at the 768px breakpoint; `MobileNav.astro` does not need its own breakpoint solely because it is a mobile component.
+3. `PageLayout` remains responsible for the 1024px single-column/two-column layout transition.
+4. Small-screen adjustments should prioritize natural wrapping, flexible widths, and controlled spacing rather than aggressive typography reduction.
+5. The existing Classic Academic CV visual direction remains unchanged.
+6. Responsive changes should remain minimal and should not introduce unnecessary breakpoints or dependencies.
+7. Homepage assembly remains a separate phase and should determine the final composition of `Nav`, `PageLayout`, `Sidebar`, and the section components.
+8. `DESIGN-CONTRACT.md` remains the authoritative product/design specification.
+9. `AGENTS.md` remains the implementation workflow guide.
+
+### Next Phase
+
+Phase 9 should assemble the homepage using the completed layout, reusable UI, section components, and responsive behavior.
+
+Homepage assembly should integrate the existing data layer and confirm the final placement of `Nav`, `Sidebar`, and all required CV sections without modifying the established content architecture.

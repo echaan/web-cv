@@ -37,8 +37,8 @@ Recruiter-facing static CV website built with Astro.
 | 5. Layout Foundation     | Completed | Data layer, layouts, global CSS         |
 | 6. Reusable Components   | Completed | UI/layout components                    |
 | 7. Sections              | Completed | CV section components                   |
-| 8. Responsive Behavior   | Next      | Responsive layout and component behavior|
-| 9. Projects              | Planned   | `/projects` and project listing         |
+| 8. Responsive Behavior   | Completed | Responsive layout and component behavior|
+| 9. Projects              | Next      | `/projects` and project listing         |
 | 10. Project Details      | Planned   | Optional MDX project pages              |
 | 11. Accessibility & QA   | Planned   | Accessibility, responsive, build review |
 | 12. Visual Review        | Planned   | Final visual/design review              |
@@ -54,7 +54,7 @@ Recruiter-facing static CV website built with Astro.
 * `BaseLayout.astro` and `PageLayout.astro` provide the shared layout foundation.
 * `global.css` contains the shared design tokens and base styles.
 * Reusable UI and layout components are implemented under `src/components/ui/` and `src/components/sections/` (Nav, Sidebar).
-* All nine CV section components are implemented under `src/components/sections/`.
+* Responsive behavior is implemented across `PageLayout`, `MobileNav`, `ProjectCard`, and `SkillGroup`.
 * Build/check currently pass.
 
 ## Important Decisions
@@ -71,6 +71,6 @@ Recruiter-facing static CV website built with Astro.
 
 ## Next
 
-Phase 8: implement responsive behavior across layouts and components.
+Phase 9: implement the `/projects` page and project listing.
 
 After each phase, update this file only with the new status/current state and important decisions. Detailed implementation history belongs in `PROJECT_LOG.md`.
