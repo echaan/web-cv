@@ -1,0 +1,55 @@
+---
+/**
+ * EntryCard: flat document-like structural entry for CV sections.
+ *
+ * Provides a consistent, restrained layout for Experience, Education,
+ * Bootcamp, Organization, and Certification entries without imposing
+ * a card/dashboard appearance.
+ *
+ * Slots:
+ *   header   — entry title (h3) and period/date metadata
+ *   meta     — secondary metadata (organization, issuer, etc.)
+ *   default  — body content (bullets, description, coursework, tags, etc.)
+ */
+---
+
+<article class="entry">
+  <div class="entry-header">
+    <slot name="header" />
+  </div>
+  <div class="entry-meta">
+    <slot name="meta" />
+  </div>
+  <div class="entry-body">
+    <slot />
+  </div>
+</article>
+
+<style>
+  .entry {
+    padding-bottom: var(--space-6);
+    border-bottom: var(--border-width) solid var(--color-border);
+  }
+
+  .entry:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .entry-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-4);
+    margin-bottom: var(--space-1);
+  }
+
+  .entry-meta:not(:empty) {
+    margin-bottom: var(--space-2);
+  }
+
+  .entry-body:not(:empty) {
+    margin-top: var(--space-2);
+  }
+</style>

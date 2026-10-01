@@ -1,0 +1,33 @@
+---
+import type { Project } from '../../types';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  projects: Project[];
+  /** Pass true for each card that has a live case-study detail page. */
+  hasCaseStudy?: boolean;
+}
+
+const { projects, hasCaseStudy = false } = Astro.props;
+---
+
+<ul class="project-list" role="list">
+  {
+    projects.map((project) => (
+      <li>
+        <ProjectCard project={project} hasCaseStudy={hasCaseStudy} />
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .project-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+</style>
