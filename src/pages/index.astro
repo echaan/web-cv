@@ -1,18 +1,63 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageLayout from '../components/layout/PageLayout.astro';
+import Nav from '../components/sections/Nav.astro';
+import Sidebar from '../components/sections/Sidebar.astro';
+import AboutSection from '../components/sections/AboutSection.astro';
+import EducationSection from '../components/sections/EducationSection.astro';
+import ExperienceSection from '../components/sections/ExperienceSection.astro';
+import BootcampSection from '../components/sections/BootcampSection.astro';
+import ProjectsSection from '../components/sections/ProjectsSection.astro';
+import OrganizationsSection from '../components/sections/OrganizationsSection.astro';
+import CertificationsSection from '../components/sections/CertificationsSection.astro';
+import SkillsSection from '../components/sections/SkillsSection.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import {
+  profile,
+  about,
+  education,
+  experiences,
+  bootcamps,
+  organizations,
+  certifications,
+  skills,
+  getFeaturedProjects,
+} from '../lib/data';
+
+const featuredProjects = getFeaturedProjects();
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Website</title>
-</head>
-<body>
-  <main>
-    <h1>CV Website</h1>
-    <p>Foundation ready for implementation.</p>
-  </main>
-</body>
-</html>
+<BaseLayout title="CV">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <Nav />
+  <PageLayout>
+    <Sidebar slot="sidebar" profile={profile} />
+    <AboutSection about={about} />
+    <EducationSection education={education} />
+    <ExperienceSection experiences={experiences} />
+    <BootcampSection bootcamps={bootcamps} />
+    <ProjectsSection projects={featuredProjects} allProjectsHref="/projects" />
+    <OrganizationsSection organizations={organizations} />
+    <CertificationsSection certifications={certifications} />
+    <SkillsSection skills={skills} />
+    <ContactSection profile={profile} />
+  </PageLayout>
+</BaseLayout>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-accent);
+    color: #ffffff;
+    padding: var(--space-2) var(--space-4);
+    text-decoration: none;
+    z-index: 100;
+    font-size: 0.875rem;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+</style>

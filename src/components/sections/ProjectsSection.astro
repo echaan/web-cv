@@ -5,18 +5,32 @@ import ProjectList from '../ui/ProjectList.astro';
 
 interface Props {
   projects: Project[];
+  /** When provided, renders a "View all projects" link pointing to this href. */
+  allProjectsHref?: string;
 }
 
-const { projects } = Astro.props;
+const { projects, allProjectsHref } = Astro.props;
 ---
 
 <section id="projects" class="section">
   <SectionTitle title="Projects" id="projects-heading" />
   <ProjectList projects={projects} />
+  {
+    allProjectsHref && (
+      <p class="all-projects">
+        <a href={allProjectsHref}>View all projects</a>
+      </p>
+    )
+  }
 </section>
 
 <style>
   .section {
     margin-bottom: var(--space-12);
+  }
+
+  .all-projects {
+    margin-top: var(--space-6);
+    font-size: 0.875rem;
   }
 </style>
