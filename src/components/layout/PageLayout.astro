@@ -26,15 +26,21 @@ const { class: className } = Astro.props;
   .page-container {
     max-width: var(--container-max-width);
     margin: 0 auto;
-    padding: var(--space-8);
+    padding: var(--space-6) var(--space-4);
   }
 
   .page-sidebar {
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-10);
   }
 
   .page-main {
-    /* Main content area */
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .page-container {
+      padding: var(--space-8) var(--space-6);
+    }
   }
 
   /* Desktop two-column layout at 1024px+ */
@@ -44,6 +50,7 @@ const { class: className } = Astro.props;
       grid-template-columns: var(--sidebar-width) 1fr;
       gap: var(--column-gap);
       align-items: start;
+      padding: var(--space-8);
     }
 
     .page-sidebar {

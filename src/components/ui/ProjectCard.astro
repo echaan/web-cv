@@ -61,9 +61,15 @@ const caseStudyHref = `/projects/${slug}`;
   .project-card {
     border: var(--border-width) solid var(--color-border);
     border-radius: var(--border-radius-md);
-    padding: var(--space-6);
+    padding: var(--space-4);
     background-color: var(--color-bg);
     transition: border-color var(--transition-fast);
+  }
+
+  @media (min-width: 480px) {
+    .project-card {
+      padding: var(--space-6);
+    }
   }
 
   .project-card:hover {

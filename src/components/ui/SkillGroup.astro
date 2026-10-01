@@ -18,10 +18,9 @@ const { category, skills } = Astro.props;
 
 <style>
   .skill-group {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: var(--space-2) var(--space-4);
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
     padding-bottom: var(--space-3);
   }
 
@@ -33,13 +32,25 @@ const { category, skills } = Astro.props;
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-text-secondary);
-    white-space: nowrap;
-    padding-top: 0.125rem;
   }
 
   .skill-group__skills {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1) var(--space-2);
+  }
+
+  @media (min-width: 480px) {
+    .skill-group {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: var(--space-2) var(--space-4);
+      align-items: start;
+    }
+
+    .skill-group__category {
+      white-space: nowrap;
+      padding-top: 0.125rem;
+    }
   }
 </style>
