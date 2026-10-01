@@ -144,22 +144,6 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
-/* Skip to content link */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--color-accent);
-  color: white;
-  padding: var(--space-2) var(--space-4);
-  text-decoration: none;
-  z-index: 100;
-}
-
-.skip-link:focus {
-  top: 0;
-}
-
 /* ============================================================================
    Lists
    ============================================================================ */

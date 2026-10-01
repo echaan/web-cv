@@ -14,9 +14,9 @@ const { class: className } = Astro.props;
 ---
 
 <div class={`page-container ${className || ''}`}>
-  <aside class="page-sidebar">
+  <div class="page-sidebar-wrap">
     <slot name="sidebar" />
-  </aside>
+    </div>
   <main class="page-main" id="main-content">
     <slot />
   </main>
@@ -29,7 +29,7 @@ const { class: className } = Astro.props;
     padding: var(--space-6) var(--space-4);
   }
 
-  .page-sidebar {
+  .page-sidebar-wrap {
     margin-bottom: var(--space-10);
   }
 
@@ -53,7 +53,7 @@ const { class: className } = Astro.props;
       padding: var(--space-8);
     }
 
-    .page-sidebar {
+    .page-sidebar-wrap {
       margin-bottom: 0;
     }
 

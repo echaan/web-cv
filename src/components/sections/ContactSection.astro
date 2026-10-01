@@ -24,7 +24,7 @@ const { name, email, linkedin, github, cvFile } = profile;
       linkedin && (
         <li class="contact-item">
           <span class="contact-label">LinkedIn</span>
-          <IconLink href={linkedin} label={`${name} on LinkedIn`} text={linkedin} external />
+          <IconLink href={linkedin} label={`${name} on LinkedIn`} text="LinkedIn" external />
         </li>
       )
     }
@@ -33,7 +33,7 @@ const { name, email, linkedin, github, cvFile } = profile;
       github && (
         <li class="contact-item">
           <span class="contact-label">GitHub</span>
-          <IconLink href={github} label={`${name} on GitHub`} text={github} external />
+          <IconLink href={github} label={`${name} on GitHub`} text="GitHub" external />
         </li>
       )
     }
