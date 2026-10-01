@@ -1,0 +1,69 @@
+---
+import type { Organization } from '../../types';
+import SectionTitle from '../ui/SectionTitle.astro';
+import EntryCard from '../ui/EntryCard.astro';
+
+interface Props {
+  organizations: Organization[];
+}
+
+const { organizations } = Astro.props;
+---
+
+<section id="organization" class="section">
+  <SectionTitle title="Organization" id="organization-heading" />
+
+  <div class="entry-list">
+    {
+      organizations.map((org) => (
+        <EntryCard>
+          <div slot="header">
+            <h3 class="entry-title">{org.name}</h3>
+            <span class="entry-period">{org.period}</span>
+          </div>
+          <ul class="contribution-list" role="list">
+            {org.contributions.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </EntryCard>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .section {
+    margin-bottom: var(--space-12);
+  }
+
+  .entry-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .entry-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .entry-period {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .contribution-list {
+    list-style: disc;
+    padding-left: var(--space-6);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+  }
+</style>

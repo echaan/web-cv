@@ -1,0 +1,22 @@
+---
+import type { Project } from '../../types';
+import SectionTitle from '../ui/SectionTitle.astro';
+import ProjectList from '../ui/ProjectList.astro';
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section id="projects" class="section">
+  <SectionTitle title="Projects" id="projects-heading" />
+  <ProjectList projects={projects} />
+</section>
+
+<style>
+  .section {
+    margin-bottom: var(--space-12);
+  }
+</style>

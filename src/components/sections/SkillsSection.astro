@@ -1,0 +1,30 @@
+---
+import type { SkillGroup as SkillGroupType } from '../../types';
+import SectionTitle from '../ui/SectionTitle.astro';
+import SkillGroup from '../ui/SkillGroup.astro';
+
+interface Props {
+  skills: SkillGroupType[];
+}
+
+const { skills } = Astro.props;
+---
+
+<section id="skills" class="section">
+  <SectionTitle title="Skills" id="skills-heading" />
+  <dl class="skill-groups">
+    {skills.map((group) => <SkillGroup category={group.category} skills={group.skills} />)}
+  </dl>
+</section>
+
+<style>
+  .section {
+    margin-bottom: var(--space-12);
+  }
+
+  .skill-groups {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

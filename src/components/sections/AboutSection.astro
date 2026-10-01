@@ -1,0 +1,21 @@
+---
+import type { About } from '../../types';
+import SectionTitle from '../ui/SectionTitle.astro';
+
+interface Props {
+  about: About;
+}
+
+const { about } = Astro.props;
+---
+
+<section id="about" class="section">
+  <SectionTitle title="About" id="about-heading" />
+  <p>{about.content}</p>
+</section>
+
+<style>
+  .section {
+    margin-bottom: var(--space-12);
+  }
+</style>

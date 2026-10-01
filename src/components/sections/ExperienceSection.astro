@@ -1,0 +1,78 @@
+---
+import type { Experience } from '../../types';
+import SectionTitle from '../ui/SectionTitle.astro';
+import EntryCard from '../ui/EntryCard.astro';
+
+interface Props {
+  experiences: Experience[];
+}
+
+const { experiences } = Astro.props;
+---
+
+<section id="experience" class="section">
+  <SectionTitle title="Experience" id="experience-heading" />
+
+  <div class="entry-list">
+    {
+      experiences.map((exp) => (
+        <EntryCard>
+          <div slot="header">
+            <h3 class="entry-title">{exp.role}</h3>
+            <span class="entry-period">{exp.period}</span>
+          </div>
+          <div slot="meta">
+            <p class="entry-org">{exp.organization}</p>
+          </div>
+          <ul class="contribution-list" role="list">
+            {exp.contributions.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </EntryCard>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .section {
+    margin-bottom: var(--space-12);
+  }
+
+  .entry-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .entry-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .entry-period {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .entry-org {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .contribution-list {
+    list-style: disc;
+    padding-left: var(--space-6);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+  }
+</style>
