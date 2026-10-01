@@ -28,18 +28,21 @@ Recruiter-facing static CV website built with Astro.
 
 ## Phase Status
 
-| Phase                  | Status    | Result                                  |
-| ---------------------- | --------- | --------------------------------------- |
-| 1. Foundation          | Completed | Minimal Astro foundation                |
-| 2. Structure           | Completed | Project directories established         |
-| 3. Types               | Completed | TypeScript content schema               |
-| 4. JSON Content        | Completed | CV data separated into JSON             |
-| 5. Layout Foundation   | Completed | Data layer, layouts, global CSS         |
-| 6. Reusable Components | Next      | UI/layout components                    |
-| 7. Sections            | Planned   | CV section components                   |
-| 8. Homepage            | Planned   | Assemble `/`                            |
-| 9. Projects            | Planned   | `/projects` and optional details        |
-| 10. QA & Polish        | Planned   | Responsive, accessibility, build review |
+| Phase                    | Status    | Result                                  |
+| ------------------------ | --------- | --------------------------------------- |
+| 1. Foundation            | Completed | Minimal Astro foundation                |
+| 2. Structure             | Completed | Project directories established         |
+| 3. Types                 | Completed | TypeScript content schema               |
+| 4. JSON Content          | Completed | CV data separated into JSON             |
+| 5. Layout Foundation     | Completed | Data layer, layouts, global CSS         |
+| 6. Reusable Components   | Completed | UI/layout components                    |
+| 7. Sections              | Completed | CV section components                   |
+| 8. Responsive Behavior   | Next      | Responsive layout and component behavior|
+| 9. Projects              | Planned   | `/projects` and project listing         |
+| 10. Project Details      | Planned   | Optional MDX project pages              |
+| 11. Accessibility & QA   | Planned   | Accessibility, responsive, build review |
+| 12. Visual Review        | Planned   | Final visual/design review              |
+| 13. Deploy               | Planned   | Production deployment                   |
 
 ## Current State
 
@@ -50,6 +53,8 @@ Recruiter-facing static CV website built with Astro.
 * `src/lib/data.ts` provides typed data access and project helpers.
 * `BaseLayout.astro` and `PageLayout.astro` provide the shared layout foundation.
 * `global.css` contains the shared design tokens and base styles.
+* Reusable UI and layout components are implemented under `src/components/ui/` and `src/components/sections/` (Nav, Sidebar).
+* All nine CV section components are implemented under `src/components/sections/`.
 * Build/check currently pass.
 
 ## Important Decisions
@@ -61,9 +66,11 @@ Recruiter-facing static CV website built with Astro.
 * Project links remain intentionally minimal.
 * Git write operations remain manual; Agent only performs read-only Git inspection.
 * Each phase should remain within its defined scope.
+* Case-study existence is not stored in `ProjectList` or `ProjectCard`; the page assembly layer supplies `hasCaseStudy` when detail pages are confirmed.
+* Section components receive data through props; data fetching is the responsibility of the page assembly layer.
 
 ## Next
 
-Phase 6: implement reusable UI/layout primitives without assembling the actual pages.
+Phase 8: implement responsive behavior across layouts and components.
 
 After each phase, update this file only with the new status/current state and important decisions. Detailed implementation history belongs in `PROJECT_LOG.md`.
