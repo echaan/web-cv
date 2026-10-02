@@ -2,86 +2,217 @@
 import MobileNav from '../ui/MobileNav.astro';
 ---
 
-<header class="site-header">
-  <nav class="desktop-nav" aria-label="Site navigation">
-    <ul class="desktop-nav__list" role="list">
-      <li><a href="/#about" class="desktop-nav__link">About</a></li>
-      <li><a href="/#education" class="desktop-nav__link">Education</a></li>
-      <li><a href="/#experience" class="desktop-nav__link">Experience</a></li>
-      <li><a href="/#projects" class="desktop-nav__link">Projects</a></li>
-      <li><a href="/#contact" class="desktop-nav__link">Contact</a></li>
-    </ul>
-  </nav>
+<header class="fixed top-0 inset-x-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/90 shadow-xs h-16 transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <!-- Desktop Layout (>=1024px): 2-column grid matching PageLayout alignment -->
+    <div class="hidden lg:grid lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-12 xl:gap-16 items-center h-full">
+      <!-- Left Column: Brand aligns with Profile Column -->
+      <div class="flex items-center">
+        <a
+          href="/"
+          class="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg py-1"
+          aria-label="Homepage - M. Eric Chaniago"
+        >
+          <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs shadow-xs group-hover:bg-blue-700 transition-colors">
+            EC
+          </div>
+          <span class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors text-sm tracking-tight">
+            M. Eric Chaniago
+          </span>
+        </a>
+      </div>
 
-  <div class="mobile-nav-wrapper">
-    <MobileNav />
+      <!-- Right Column: Navigation links -->
+      <nav class="flex items-center justify-start" aria-label="Desktop site navigation">
+        <ul class="flex items-center gap-1 xl:gap-2" role="list">
+          <li>
+            <a
+              href="/#about"
+              data-nav-link="about"
+              class="nav-link px-3.5 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              About
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#education"
+              data-nav-link="education"
+              class="nav-link px-3.5 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Education
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#experience"
+              data-nav-link="experience"
+              class="nav-link px-3.5 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Experience
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#projects"
+              data-nav-link="projects"
+              class="nav-link px-3.5 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Projects
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#contact"
+              data-nav-link="contact"
+              class="nav-link px-3.5 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Tablet Layout (768px - 1023px): Centered single-row navigation -->
+    <div class="hidden md:flex lg:hidden items-center justify-between h-full">
+      <a
+        href="/"
+        class="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg py-1"
+        aria-label="Homepage - M. Eric Chaniago"
+      >
+        <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs shadow-xs group-hover:bg-blue-700 transition-colors">
+          EC
+        </div>
+        <span class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors text-sm tracking-tight">
+          M. Eric Chaniago
+        </span>
+      </a>
+
+      <nav class="flex items-center" aria-label="Tablet site navigation">
+        <ul class="flex items-center gap-1 sm:gap-2" role="list">
+          <li>
+            <a
+              href="/#about"
+              data-nav-link="about"
+              class="nav-link px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              About
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#education"
+              data-nav-link="education"
+              class="nav-link px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Education
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#experience"
+              data-nav-link="experience"
+              class="nav-link px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Experience
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#projects"
+              data-nav-link="projects"
+              class="nav-link px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Projects
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#contact"
+              data-nav-link="contact"
+              class="nav-link px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Mobile Layout (<768px): Brand + MobileNav toggle -->
+    <div class="flex md:hidden items-center justify-between h-full">
+      <a
+        href="/"
+        class="group flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg py-1"
+        aria-label="Homepage - M. Eric Chaniago"
+      >
+        <div class="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs shadow-xs group-hover:bg-blue-700 transition-colors">
+          EC
+        </div>
+        <span class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors text-sm tracking-tight">
+          M. Eric Chaniago
+        </span>
+      </a>
+
+      <MobileNav />
+    </div>
   </div>
 </header>
 
-<style>
-  .site-header {
-    border-bottom: var(--border-width) solid var(--color-border);
-    margin-bottom: var(--space-8);
-    padding: 0 var(--space-4);
-  }
+<script>
+  function initScrollSpy() {
+    const sectionIds = ['about', 'education', 'experience', 'projects', 'contact'];
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+    const mobileNavLinks = document.querySelectorAll<HTMLAnchorElement>('[data-mobile-nav-link]');
 
-  @media (min-width: 640px) {
-    .site-header {
-      padding: 0 var(--space-6);
-    }
-  }
+    function updateActiveLink() {
+      let currentSectionId = '';
+      const scrollPosition = window.scrollY + 120;
 
-  @media (min-width: 1024px) {
-    .site-header {
-      padding: 0 var(--space-8);
-    }
-  }
+      for (const id of sectionIds) {
+        const section = document.getElementById(id);
+        if (section) {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            currentSectionId = id;
+            break;
+          }
+        }
+      }
 
-  /* Desktop nav: visible ≥768px */
-  .desktop-nav {
-    display: none;
-  }
+      navLinks.forEach((link) => {
+        const linkSection = link.getAttribute('data-nav-link');
+        if (linkSection === currentSectionId) {
+          link.classList.add('text-blue-600', 'font-semibold', 'bg-blue-50/80');
+          link.classList.remove('text-slate-600');
+        } else {
+          link.classList.remove('text-blue-600', 'font-semibold', 'bg-blue-50/80');
+          link.classList.add('text-slate-600');
+        }
+      });
 
-  .desktop-nav__list {
-    display: flex;
-    gap: var(--space-6);
-    list-style: none;
-    margin: 0;
-    padding: var(--space-4) 0;
-  }
-
-  .desktop-nav__link {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-text-primary);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-
-  .desktop-nav__link:hover {
-    color: var(--color-accent);
-  }
-
-  .desktop-nav__link:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-
-  /* Mobile nav: visible <768px */
-  .mobile-nav-wrapper {
-    display: flex;
-    align-items: center;
-    padding: var(--space-3) 0;
-  }
-
-  @media (min-width: 768px) {
-    .desktop-nav {
-      display: block;
+      mobileNavLinks.forEach((link) => {
+        const linkSection = link.getAttribute('data-mobile-nav-link');
+        if (linkSection === currentSectionId) {
+          link.classList.add('text-blue-600', 'font-semibold', 'bg-blue-50/80');
+          link.classList.remove('text-slate-700');
+        } else {
+          link.classList.remove('text-blue-600', 'font-semibold', 'bg-blue-50/80');
+          link.classList.add('text-slate-700');
+        }
+      });
     }
 
-    .mobile-nav-wrapper {
-      display: none;
-    }
+    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    updateActiveLink();
   }
-</style>
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollSpy);
+  } else {
+    initScrollSpy();
+  }
+</script>
+

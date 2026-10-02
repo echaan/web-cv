@@ -1,10 +1,7 @@
 ---
-// PageLayout: Two-column responsive wrapper
-// Establishes desktop two-column layout (profile/sidebar + main content)
-// and responsive single-column for smaller screens
-//
-// This component provides the structural foundation only.
-// Sidebar and Navigation UI are implemented separately.
+// PageLayout: Two-column responsive layout container for v2.0
+// Desktop (>=1024px): Two-column layout with stationary profile column and scrollable content
+// Tablet (768-1023px) & Mobile (<768px): Single-column content flow with responsive horizontal padding
 
 interface Props {
   class?: string;
@@ -13,52 +10,14 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class={`page-container ${className || ''}`}>
-  <div class="page-sidebar-wrap">
-    <slot name="sidebar" />
+<div class={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-24 pb-16 sm:pb-20 ${className || ''}`}>
+  <div class="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-12 xl:gap-16 items-start">
+    <div class="profile-column-wrap mb-8 md:mb-10 lg:mb-0 lg:sticky lg:top-24 lg:self-start">
+      <slot name="sidebar" />
     </div>
-  <main class="page-main" id="main-content">
-    <slot />
-  </main>
+    <main id="main-content" class="main-content-column min-w-0 flex flex-col gap-10 md:gap-12">
+      <slot />
+    </main>
+  </div>
 </div>
 
-<style>
-  .page-container {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: var(--space-6) var(--space-4);
-  }
-
-  .page-sidebar-wrap {
-    margin-bottom: var(--space-10);
-  }
-
-  .page-main {
-    min-width: 0;
-  }
-
-  @media (min-width: 640px) {
-    .page-container {
-      padding: var(--space-8) var(--space-6);
-    }
-  }
-
-  /* Desktop two-column layout at 1024px+ */
-  @media (min-width: 1024px) {
-    .page-container {
-      display: grid;
-      grid-template-columns: var(--sidebar-width) 1fr;
-      gap: var(--column-gap);
-      align-items: start;
-      padding: var(--space-8);
-    }
-
-    .page-sidebar-wrap {
-      margin-bottom: 0;
-    }
-
-    .page-main {
-      max-width: var(--main-content-max-width);
-    }
-  }
-</style>

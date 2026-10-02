@@ -28,7 +28,6 @@ const featuredProjects = getFeaturedProjects();
 ---
 
 <BaseLayout title="CV">
-  <a href="#main-content" class="skip-link">Skip to main content</a>
   <Nav />
   <PageLayout>
     <Sidebar slot="sidebar" profile={profile} />
@@ -44,20 +43,3 @@ const featuredProjects = getFeaturedProjects();
   </PageLayout>
 </BaseLayout>
 
-<style>
-  .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--color-accent);
-    color: #ffffff;
-    padding: var(--space-2) var(--space-4);
-    text-decoration: none;
-    z-index: 100;
-    font-size: 0.875rem;
-  }
-
-  .skip-link:focus {
-    top: 0;
-  }
-</style>
