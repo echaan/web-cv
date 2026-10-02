@@ -28,21 +28,21 @@ Recruiter-facing static CV website built with Astro.
 
 ## Phase Status
 
-| Phase                    | Status    | Result                                  |
-| ------------------------ | --------- | --------------------------------------- |
-| 1. Foundation            | Completed | Minimal Astro foundation                |
-| 2. Structure             | Completed | Project directories established         |
-| 3. Types                 | Completed | TypeScript content schema               |
-| 4. JSON Content          | Completed | CV data separated into JSON             |
-| 5. Layout Foundation     | Completed | Data layer, layouts, global CSS         |
-| 6. Reusable Components   | Completed | UI/layout components                    |
-| 7. Sections              | Completed | CV section components                   |
-| 8. Responsive Behavior   | Completed | Responsive layout and component behavior|
-| 9. Projects              | Next      | `/projects` and project listing         |
-| 10. Project Details      | Planned   | Optional MDX project pages              |
-| 11. Accessibility & QA   | Planned   | Accessibility, responsive, build review |
-| 12. Visual Review        | Planned   | Final visual/design review              |
-| 13. Deploy               | Planned   | Production deployment                   |
+| Phase                    | Status    | Result                                              |
+| ------------------------ | --------- | --------------------------------------------------- |
+| 1. Foundation            | Completed | Minimal Astro foundation                            |
+| 2. Structure             | Completed | Project directories established                     |
+| 3. Types                 | Completed | TypeScript content schema                           |
+| 4. JSON Content          | Completed | CV data separated into JSON                         |
+| 5. Layout Foundation     | Completed | Data layer, layouts, global CSS                     |
+| 6. Reusable Components   | Completed | UI/layout components                                |
+| 7. Sections              | Completed | CV section components                               |
+| 8. Responsive Behavior   | Completed | Responsive layout and component behavior            |
+| 9. Projects              | Completed | Homepage featured projects and `/projects` listing  |
+| 10. Project Details      | Skipped   | No genuine case-study content currently requires MDX|
+| 11. Accessibility & QA   | Completed | Accessibility, responsive, and build review         |
+| 12. Visual Redesign      | Next      | Implement the revised v2.0 design contract          |
+| 13. Deploy               | Planned   | Production deployment                               |
 
 ## Current State
 
@@ -53,8 +53,9 @@ Recruiter-facing static CV website built with Astro.
 * `src/lib/data.ts` provides typed data access and project helpers.
 * `BaseLayout.astro` and `PageLayout.astro` provide the shared layout foundation.
 * `global.css` contains the shared design tokens and base styles.
-* Reusable UI and layout components are implemented under `src/components/ui/` and `src/components/sections/` (Nav, Sidebar).
-* Responsive behavior is implemented across `PageLayout`, `MobileNav`, `ProjectCard`, and `SkillGroup`.
+* Reusable UI, layout, and section components are implemented.
+* Homepage renders featured projects; `/projects` renders the full project collection.
+* Accessibility, landmark semantics, heading hierarchy, readable link labels, and responsive behavior are verified.
 * Build/check currently pass.
 
 ## Important Decisions
@@ -71,6 +72,6 @@ Recruiter-facing static CV website built with Astro.
 
 ## Next
 
-Phase 9: implement the `/projects` page and project listing.
+Phase 12: Visual Redesign — Implement the revised v2.0 design contract.
 
 After each phase, update this file only with the new status/current state and important decisions. Detailed implementation history belongs in `PROJECT_LOG.md`.
