@@ -10,16 +10,16 @@ const { profile } = Astro.props;
 const { name, title, location, email, linkedin, github, photo, cvFile } = profile;
 ---
 
-<aside class="w-full bg-white rounded-2xl border border-slate-200/90 shadow-xs p-6 md:p-7 lg:p-7" aria-label="Profile">
-  <div class="flex flex-col items-center text-center md:flex-row md:items-center md:text-left md:gap-8 lg:flex-col lg:items-start lg:text-left lg:gap-6">
+<aside class="w-full bg-white rounded-2xl border border-slate-200/90 shadow-xs p-5 sm:p-6 md:p-7 lg:p-6" aria-label="Profile">
+  <div class="flex flex-col items-center text-center md:flex-row md:items-center md:text-left md:gap-7 lg:flex-col lg:items-start lg:text-left lg:gap-5">
     <!-- Photo frame with reusable fallback -->
-    <div class="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-2xl overflow-hidden bg-slate-100 ring-1 ring-slate-200/80 shrink-0 mb-4 md:mb-0 lg:mb-0">
+    <div class="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-full lg:h-auto aspect-square rounded-2xl overflow-hidden bg-slate-100 ring-1 ring-slate-200/80 shrink-0 mb-4 md:mb-0 lg:mb-0">
       <img
         id="profile-avatar"
         src={photo}
         alt={`Photo of ${name}`}
-        width="128"
-        height="128"
+        width="272"
+        height="272"
         class="w-full h-full object-cover"
         loading="eager"
         decoding="async"
@@ -29,74 +29,77 @@ const { name, title, location, email, linkedin, github, photo, cvFile } = profil
     <!-- Identity and details container -->
     <div class="flex-1 min-w-0 flex flex-col items-center md:items-start lg:items-start w-full">
       <div class="space-y-1">
-        <h1 class="text-2xl font-bold tracking-tight text-slate-900 leading-tight">{name}</h1>
-        <p class="text-sm font-medium text-slate-600 leading-snug">{title}</p>
+        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-tight">{name}</h1>
+        <p class="text-xs sm:text-sm font-medium text-slate-600 leading-snug">{title}</p>
       </div>
 
       {location && (
-        <div class="flex items-center gap-1.5 text-xs sm:text-sm text-slate-500 mt-3 font-normal">
+        <div class="flex items-center gap-1.5 text-xs sm:text-sm text-slate-500 mt-2.5 font-normal">
           <Icon name="map-pin" class="w-4 h-4 text-slate-400 shrink-0" aria-hidden="true" />
           <span>{location}</span>
         </div>
       )}
 
-      <!-- Social icons row -->
-      <div class="flex items-center gap-2 mt-4 pt-1 justify-center md:justify-start lg:justify-start">
-        {email && (
-          <a
-            href={`mailto:${email}`}
-            aria-label={`Send email to ${name}`}
-            class="inline-flex items-center justify-center p-2.5 text-slate-500 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[44px] min-w-[44px] motion-safe:hover:-translate-y-0.5"
-            title={`Email: ${email}`}
-          >
-            <Icon name="mail" class="w-5 h-5" />
-            <span class="sr-only">Email</span>
-          </a>
-        )}
+      <!-- Actions container (Tablet: horizontal between; Mobile & Desktop: stacked) -->
+      <div class="w-full mt-4 pt-0.5 flex flex-col items-center md:flex-row md:items-center md:justify-between md:gap-4 lg:flex-col lg:items-start lg:gap-0">
+        <!-- Social icons row (Default: colored bg + white icon; Hover/focus: neutral/light bg + colored icon) -->
+        <div class="flex items-center gap-2 justify-center md:justify-start lg:justify-start">
+          {linkedin && (
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${name} on LinkedIn`}
+              class="inline-flex items-center justify-center p-2.5 rounded-lg bg-[#0a66c2] text-white border border-[#0a66c2] hover:bg-sky-50 hover:text-[#0a66c2] hover:border-sky-200 active:bg-sky-100 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 focus-visible:bg-sky-50 focus-visible:text-[#0a66c2] focus-visible:border-sky-200 min-h-[44px] min-w-[44px] motion-safe:hover:-translate-y-0.5"
+              title="LinkedIn profile"
+            >
+              <Icon name="linkedin" class="w-5 h-5 transition-colors" />
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          )}
 
-        {linkedin && (
-          <a
-            href={linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${name} on LinkedIn`}
-            class="inline-flex items-center justify-center p-2.5 text-slate-500 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[44px] min-w-[44px] motion-safe:hover:-translate-y-0.5"
-            title="LinkedIn profile"
-          >
-            <Icon name="linkedin" class="w-5 h-5" />
-            <span class="sr-only">LinkedIn</span>
-          </a>
-        )}
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${name} on GitHub`}
+              class="inline-flex items-center justify-center p-2.5 rounded-lg bg-slate-900 text-white border border-slate-900 hover:bg-slate-100 hover:text-slate-900 hover:border-slate-300 active:bg-slate-200 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 focus-visible:bg-slate-100 focus-visible:text-slate-900 focus-visible:border-slate-300 min-h-[44px] min-w-[44px] motion-safe:hover:-translate-y-0.5"
+              title="GitHub profile"
+            >
+              <Icon name="github" class="w-5 h-5 transition-colors" />
+              <span class="sr-only">GitHub</span>
+            </a>
+          )}
 
-        {github && (
-          <a
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${name} on GitHub`}
-            class="inline-flex items-center justify-center p-2.5 text-slate-500 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[44px] min-w-[44px] motion-safe:hover:-translate-y-0.5"
-            title="GitHub profile"
-          >
-            <Icon name="github" class="w-5 h-5" />
-            <span class="sr-only">GitHub</span>
-          </a>
+          {email && (
+            <a
+              href={`mailto:${email}`}
+              aria-label={`Send email to ${name}`}
+              class="inline-flex items-center justify-center p-2.5 rounded-lg bg-blue-600 text-white border border-blue-600 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 active:bg-blue-100 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 focus-visible:bg-blue-50 focus-visible:text-blue-600 focus-visible:border-blue-200 min-h-[44px] min-w-[44px] motion-safe:hover:-translate-y-0.5"
+              title={`Email: ${email}`}
+            >
+              <Icon name="mail" class="w-5 h-5 transition-colors" />
+              <span class="sr-only">Email</span>
+            </a>
+          )}
+        </div>
+
+        <!-- Download CV Button (Passive/neutral by default, active/accent-colored on hover/focus) -->
+        {cvFile && (
+          <div class="mt-4 md:mt-0 lg:mt-4 w-full md:w-auto lg:w-full shrink-0">
+            <a
+              href={cvFile}
+              download
+              class="inline-flex items-center justify-center gap-2 w-full md:w-auto lg:w-full px-4 py-2.5 bg-slate-100 hover:bg-blue-600 active:bg-blue-700 text-slate-700 hover:text-white border border-slate-200/90 hover:border-blue-600 text-sm font-medium rounded-lg shadow-xs hover:shadow transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 focus-visible:bg-blue-600 focus-visible:text-white min-h-[44px] motion-safe:hover:-translate-y-0.5"
+              aria-label="Download CV as PDF"
+            >
+              <Icon name="download" class="w-4 h-4 shrink-0 transition-colors" />
+              <span>Download CV</span>
+            </a>
+          </div>
         )}
       </div>
-
-      <!-- Download CV Button -->
-      {cvFile && (
-        <div class="mt-5 w-full md:w-auto lg:w-full">
-          <a
-            href={cvFile}
-            download
-            class="inline-flex items-center justify-center gap-2 w-full md:w-auto lg:w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-medium rounded-lg shadow-xs hover:shadow transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 min-h-[44px] motion-safe:hover:-translate-y-0.5"
-            aria-label="Download CV as PDF"
-          >
-            <Icon name="download" class="w-4 h-4 shrink-0" />
-            <span>Download CV</span>
-          </a>
-        </div>
-      )}
     </div>
   </div>
 </aside>

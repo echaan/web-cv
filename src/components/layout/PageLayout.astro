@@ -10,12 +10,12 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-24 pb-16 sm:pb-20 ${className || ''}`}>
+<div class={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-16 pb-16 sm:pb-20 lg:pb-0 ${className || ''}`}>
   <div class="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-12 xl:gap-16 items-start">
-    <div class="profile-column-wrap mb-8 md:mb-10 lg:mb-0 lg:sticky lg:top-24 lg:self-start">
+    <div class="profile-column-wrap mb-8 md:mb-10 lg:mb-0 lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:flex lg:flex-col lg:justify-center">
       <slot name="sidebar" />
     </div>
-    <main id="main-content" class="main-content-column min-w-0 flex flex-col gap-10 md:gap-12">
+    <main id="main-content" class="main-content-column min-w-0 flex flex-col gap-10 md:gap-12 lg:py-8 lg:pb-16">
       <slot />
     </main>
   </div>
