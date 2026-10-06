@@ -102,11 +102,23 @@ const { name, title, location, email, linkedin, github, photo, cvFile } = profil
 </aside>
 
 <script>
-  const avatar = document.getElementById('profile-avatar') as HTMLImageElement | null;
-  if (avatar) {
-    avatar.addEventListener('error', () => {
-      avatar.src = '/assets/images/profile-placeholder.svg';
-    });
+  function setupAvatar() {
+    const avatar = document.getElementById('profile-avatar') as HTMLImageElement | null;
+    if (avatar) {
+      if (avatar.complete && avatar.naturalWidth === 0) {
+        avatar.src = '/assets/images/profile-placeholder.svg';
+      } else {
+        avatar.addEventListener('error', () => {
+          avatar.src = '/assets/images/profile-placeholder.svg';
+        });
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupAvatar);
+  } else {
+    setupAvatar();
   }
 </script>
 

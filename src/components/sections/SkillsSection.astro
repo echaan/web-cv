@@ -16,7 +16,7 @@ const { skills } = Astro.props;
   aria-labelledby="skills-heading"
 >
   <SectionTitle title="Skills" id="skills-heading" />
-  <dl class="space-y-5 m-0 p-0">
+  <dl class="m-0 p-0">
     {skills.map((group) => <SkillGroup category={group.category} skills={group.skills} />)}
   </dl>
 </section>
