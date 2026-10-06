@@ -1,23 +1,15 @@
 ---
 interface Props {
   label: string;
+  class?: string;
 }
 
-const { label } = Astro.props;
+const { label, class: className = '' } = Astro.props;
 ---
 
-<span class="tag">{label}</span>
+<span
+  class={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium text-slate-700 bg-slate-100/90 border border-slate-200/90 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200/80 transition-colors duration-150 motion-safe:hover:-translate-y-0.5 motion-safe:transition-all cursor-default select-none ${className}`}
+>
+  {label}
+</span>
 
-<style>
-  .tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--color-text-secondary);
-    background-color: var(--color-surface);
-    border: var(--border-width) solid var(--color-border);
-    border-radius: var(--border-radius-sm);
-    padding: 0.125rem var(--space-2);
-  }
-</style>

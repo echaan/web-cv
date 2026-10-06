@@ -1,5 +1,6 @@
 ---
 import type { Profile } from '../../types';
+import Icon from '../ui/Icon.astro';
 
 interface Props {
   profile: Profile;
@@ -34,47 +35,21 @@ const { name, title, location, email, linkedin, github, photo, cvFile } = profil
 
       {location && (
         <div class="flex items-center gap-1.5 text-xs sm:text-sm text-slate-500 mt-3 font-normal">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 text-slate-400 shrink-0"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
+          <Icon name="map-pin" class="w-4 h-4 text-slate-400 shrink-0" aria-hidden="true" />
           <span>{location}</span>
         </div>
       )}
 
       <!-- Social icons row -->
-      <div class="flex items-center gap-2 mt-4 pt-1">
+      <div class="flex items-center gap-2 mt-4 pt-1 justify-center md:justify-start lg:justify-start">
         {email && (
           <a
             href={`mailto:${email}`}
             aria-label={`Send email to ${name}`}
-            class="p-2 text-slate-500 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            class="inline-flex items-center justify-center p-2.5 text-slate-500 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[44px] min-w-[44px] motion-safe:hover:-translate-y-0.5"
             title={`Email: ${email}`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <rect width="20" height="16" x="2" y="4" rx="2"/>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
+            <Icon name="mail" class="w-5 h-5" />
             <span class="sr-only">Email</span>
           </a>
         )}
@@ -85,18 +60,10 @@ const { name, title, location, email, linkedin, github, photo, cvFile } = profil
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${name} on LinkedIn`}
-            class="p-2 text-slate-500 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            class="inline-flex items-center justify-center p-2.5 text-slate-500 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[44px] min-w-[44px] motion-safe:hover:-translate-y-0.5"
             title="LinkedIn profile"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.54a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26Z"/>
-            </svg>
+            <Icon name="linkedin" class="w-5 h-5" />
             <span class="sr-only">LinkedIn</span>
           </a>
         )}
@@ -107,18 +74,10 @@ const { name, title, location, email, linkedin, github, photo, cvFile } = profil
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${name} on GitHub`}
-            class="p-2 text-slate-500 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            class="inline-flex items-center justify-center p-2.5 text-slate-500 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[44px] min-w-[44px] motion-safe:hover:-translate-y-0.5"
             title="GitHub profile"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-            </svg>
+            <Icon name="github" class="w-5 h-5" />
             <span class="sr-only">GitHub</span>
           </a>
         )}
@@ -130,24 +89,10 @@ const { name, title, location, email, linkedin, github, photo, cvFile } = profil
           <a
             href={cvFile}
             download
-            class="inline-flex items-center justify-center gap-2 w-full md:w-auto lg:w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-medium rounded-lg shadow-xs hover:shadow transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600"
+            class="inline-flex items-center justify-center gap-2 w-full md:w-auto lg:w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-medium rounded-lg shadow-xs hover:shadow transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 min-h-[44px] motion-safe:hover:-translate-y-0.5"
             aria-label="Download CV as PDF"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 shrink-0"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" x2="12" y1="15" y2="3"/>
-            </svg>
+            <Icon name="download" class="w-4 h-4 shrink-0" />
             <span>Download CV</span>
           </a>
         </div>
@@ -164,5 +109,6 @@ const { name, title, location, email, linkedin, github, photo, cvFile } = profil
     });
   }
 </script>
+
 
 

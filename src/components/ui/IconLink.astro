@@ -1,40 +1,33 @@
 ---
+import Icon, { type IconName } from './Icon.astro';
+
 interface Props {
   href: string;
   label: string;
-  /** Short text displayed as the link — e.g. "linkedin.com/in/…" or "Email" */
+  /** Short text displayed as the link */
   text?: string;
   external?: boolean;
+  icon?: IconName | string;
+  class?: string;
 }
 
-const { href, label, text, external = false } = Astro.props;
+const { href, label, text, external = false, icon, class: className = '' } = Astro.props;
 
 const rel = external ? 'noopener noreferrer' : undefined;
 const target = external ? '_blank' : undefined;
 ---
 
-<a href={href} aria-label={label} rel={rel} target={target} class="icon-link">
-  {text ?? label}
+<a
+  href={href}
+  aria-label={label}
+  rel={rel}
+  target={target}
+  class={`inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm ${className}`}
+>
+  {icon && <Icon name={icon} class="w-4 h-4 shrink-0 text-blue-600" aria-hidden="true" />}
+  <span>{text ?? label}</span>
+  {external && !icon && (
+    <Icon name="external-link" class="w-3.5 h-3.5 shrink-0 text-blue-500 opacity-80" aria-hidden="true" />
+  )}
 </a>
 
-<style>
-  .icon-link {
-    color: var(--color-accent);
-    font-size: 0.875rem;
-    line-height: 1.5;
-    text-decoration: none;
-    transition: color var(--transition-fast);
-    word-break: break-all;
-  }
-
-  .icon-link:hover {
-    color: var(--color-accent-hover);
-    text-decoration: underline;
-  }
-
-  .icon-link:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-</style>
