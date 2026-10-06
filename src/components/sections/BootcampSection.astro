@@ -3,110 +3,85 @@ import type { Bootcamp } from '../../types';
 import SectionTitle from '../ui/SectionTitle.astro';
 import EntryCard from '../ui/EntryCard.astro';
 import Tag from '../ui/Tag.astro';
+import Icon from '../ui/Icon.astro';
 
 interface Props {
   bootcamps: Bootcamp[];
 }
 
 const { bootcamps } = Astro.props;
+
+function parseDescriptionBullets(description: string): string[] {
+  return description
+    .split(/(?<=[.!?])\s+|\n+/)
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
+}
 ---
 
-<section id="bootcamp" class="section">
+<section
+  id="bootcamp"
+  class="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-6 sm:p-7"
+  aria-labelledby="bootcamp-heading"
+>
   <SectionTitle title="Bootcamp" id="bootcamp-heading" />
 
-  <div class="entry-list">
+  <div class="space-y-6">
     {
-      bootcamps.map((camp) => (
-        <EntryCard>
-          <div slot="header">
-            <h3 class="entry-title">{camp.role}</h3>
-            <span class="entry-period">{camp.period}</span>
-          </div>
-          <div slot="meta">
-            <p class="entry-org">{camp.organization}</p>
-          </div>
-          <div class="entry-body">
-            <p class="entry-description">{camp.description}</p>
+      bootcamps.map((camp) => {
+        const bullets = parseDescriptionBullets(camp.description);
+
+        return (
+          <EntryCard>
+            <Fragment slot="header">
+              <h3 class="text-base sm:text-lg font-semibold text-slate-900 tracking-tight leading-snug">
+                {camp.role}
+              </h3>
+              <span class="text-xs sm:text-sm font-medium text-slate-500 sm:text-right shrink-0">
+                {camp.period}
+              </span>
+            </Fragment>
+            <div slot="meta">
+              <p class="text-sm font-medium text-slate-600">{camp.organization}</p>
+            </div>
+
+            <ul class="space-y-2 mt-2 list-disc list-outside pl-4 text-sm text-slate-700 leading-relaxed" role="list">
+              {bullets.map((bullet) => (
+                <li class="pl-1">{bullet}</li>
+              ))}
+            </ul>
+
             {camp.finalProject && (
-              <p class="entry-project">
-                <span class="entry-label">Final Project:</span> {camp.finalProject}
-              </p>
+              <div class="mt-4 pt-4 border-t border-slate-100">
+                <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">
+                  Capstone Project
+                </h4>
+                <div class="flex items-center gap-2 text-sm">
+                  <Icon name="code" class="w-4 h-4 text-blue-600 shrink-0" aria-hidden="true" />
+                  <a
+                    href="#projects"
+                    class="font-medium text-slate-900 hover:text-blue-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-xs"
+                  >
+                    {camp.finalProject}
+                  </a>
+                </div>
+              </div>
             )}
+
             {camp.tags && camp.tags.length > 0 && (
-              <ul class="tag-list" role="list">
-                {camp.tags.map((tag) => (
-                  <li>
-                    <Tag label={tag} />
-                  </li>
-                ))}
-              </ul>
+              <div class="mt-4 pt-3 border-t border-slate-100">
+                <ul class="flex flex-wrap gap-1.5 sm:gap-2" role="list">
+                  {camp.tags.map((tag) => (
+                    <li>
+                      <Tag label={tag} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
-          </div>
-        </EntryCard>
-      ))
+          </EntryCard>
+        );
+      })
     }
   </div>
 </section>
-
-<style>
-  .section {
-    margin-bottom: var(--space-12);
-  }
-
-  .entry-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .entry-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-  }
-
-  .entry-period {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    white-space: nowrap;
-  }
-
-  .entry-org {
-    font-size: 0.9375rem;
-    color: var(--color-text-secondary);
-    margin: 0;
-  }
-
-  .entry-body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .entry-description {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--color-text-primary);
-    margin: 0;
-  }
-
-  .entry-project {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    margin: 0;
-  }
-
-  .entry-label {
-    font-weight: 500;
-    color: var(--color-text-secondary);
-  }
-
-  .tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-1) var(--space-2);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-</style>

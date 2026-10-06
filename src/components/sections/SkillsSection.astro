@@ -10,21 +10,13 @@ interface Props {
 const { skills } = Astro.props;
 ---
 
-<section id="skills" class="section">
+<section
+  id="skills"
+  class="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-6 sm:p-7"
+  aria-labelledby="skills-heading"
+>
   <SectionTitle title="Skills" id="skills-heading" />
-  <dl class="skill-groups">
+  <dl class="space-y-5 m-0 p-0">
     {skills.map((group) => <SkillGroup category={group.category} skills={group.skills} />)}
   </dl>
 </section>
-
-<style>
-  .section {
-    margin-bottom: var(--space-12);
-  }
-
-  .skill-groups {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-  }
-</style>

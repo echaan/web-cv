@@ -1,7 +1,7 @@
 ---
 import type { Profile } from '../../types';
 import SectionTitle from '../ui/SectionTitle.astro';
-import IconLink from '../ui/IconLink.astro';
+import Icon from '../ui/Icon.astro';
 
 interface Props {
   profile: Profile;
@@ -11,90 +11,103 @@ const { profile } = Astro.props;
 const { name, email, linkedin, github, cvFile } = profile;
 ---
 
-<section id="contact" class="section">
+<section
+  id="contact"
+  class="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-6 sm:p-7"
+  aria-labelledby="contact-heading"
+>
   <SectionTitle title="Contact" id="contact-heading" />
 
-  <ul class="contact-list" role="list">
-    <li class="contact-item">
-      <span class="contact-label">Email</span>
-      <IconLink href={`mailto:${email}`} label={`Email ${name}`} text={email} />
-    </li>
+  <p class="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+    I'm always interested in new opportunities, collaborations, and discussions in data analytics and machine learning. Feel free to reach out directly.
+  </p>
 
-    {
-      linkedin && (
-        <li class="contact-item">
-          <span class="contact-label">LinkedIn</span>
-          <IconLink href={linkedin} label={`${name} on LinkedIn`} text="LinkedIn" external />
-        </li>
-      )
-    }
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+    {email && (
+      <a
+        href={`mailto:${email}`}
+        class="flex items-center gap-3 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 bg-slate-50/60 hover:bg-blue-50/70 hover:border-blue-200 text-slate-800 hover:text-blue-700 transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        aria-label={`Send email to ${email}`}
+      >
+        <div class="w-10 h-10 rounded-lg bg-white border border-slate-200/80 group-hover:border-blue-200 group-hover:bg-blue-600 text-slate-600 group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-150">
+          <Icon name="mail" class="w-5 h-5" />
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 group-hover:text-blue-600 transition-colors">
+            Email
+          </div>
+          <div class="text-sm font-medium text-slate-900 group-hover:text-blue-700 truncate transition-colors">
+            {email}
+          </div>
+        </div>
+      </a>
+    )}
 
-    {
-      github && (
-        <li class="contact-item">
-          <span class="contact-label">GitHub</span>
-          <IconLink href={github} label={`${name} on GitHub`} text="GitHub" external />
-        </li>
-      )
-    }
+    {linkedin && (
+      <a
+        href={linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-3 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 bg-slate-50/60 hover:bg-blue-50/70 hover:border-blue-200 text-slate-800 hover:text-blue-700 transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        aria-label={`${name} on LinkedIn`}
+      >
+        <div class="w-10 h-10 rounded-lg bg-white border border-slate-200/80 group-hover:border-blue-200 group-hover:bg-blue-600 text-slate-600 group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-150">
+          <Icon name="linkedin" class="w-5 h-5" />
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 group-hover:text-blue-600 transition-colors">
+            LinkedIn
+          </div>
+          <div class="text-sm font-medium text-slate-900 group-hover:text-blue-700 truncate transition-colors">
+            Connect on LinkedIn
+          </div>
+        </div>
+        <Icon name="external-link" class="w-4 h-4 text-slate-400 group-hover:text-blue-600 shrink-0 mr-1" aria-hidden="true" />
+      </a>
+    )}
 
-    {
-      cvFile && (
-        <li class="contact-item">
-          <span class="contact-label">CV</span>
-          <a href={cvFile} class="cv-download" download aria-label="Download CV as PDF">
+    {github && (
+      <a
+        href={github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-3 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 bg-slate-50/60 hover:bg-blue-50/70 hover:border-blue-200 text-slate-800 hover:text-blue-700 transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        aria-label={`${name} on GitHub`}
+      >
+        <div class="w-10 h-10 rounded-lg bg-white border border-slate-200/80 group-hover:border-blue-200 group-hover:bg-blue-600 text-slate-600 group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-150">
+          <Icon name="github" class="w-5 h-5" />
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 group-hover:text-blue-600 transition-colors">
+            GitHub
+          </div>
+          <div class="text-sm font-medium text-slate-900 group-hover:text-blue-700 truncate transition-colors">
+            Explore Repositories
+          </div>
+        </div>
+        <Icon name="external-link" class="w-4 h-4 text-slate-400 group-hover:text-blue-600 shrink-0 mr-1" aria-hidden="true" />
+      </a>
+    )}
+
+    {cvFile && (
+      <a
+        href={cvFile}
+        download
+        class="flex items-center gap-3 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 bg-slate-50/60 hover:bg-blue-50/70 hover:border-blue-200 text-slate-800 hover:text-blue-700 transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        aria-label="Download CV as PDF"
+      >
+        <div class="w-10 h-10 rounded-lg bg-white border border-slate-200/80 group-hover:border-blue-200 group-hover:bg-blue-600 text-slate-600 group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-150">
+          <Icon name="download" class="w-5 h-5" />
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 group-hover:text-blue-600 transition-colors">
+            Curriculum Vitae
+          </div>
+          <div class="text-sm font-medium text-slate-900 group-hover:text-blue-700 truncate transition-colors">
             Download CV (PDF)
-          </a>
-        </li>
-      )
-    }
-  </ul>
+          </div>
+        </div>
+      </a>
+    )}
+  </div>
 </section>
-
-<style>
-  .section {
-    margin-bottom: var(--space-12);
-  }
-
-  .contact-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .contact-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: var(--space-2) var(--space-4);
-  }
-
-  .contact-label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    min-width: 5rem;
-    flex-shrink: 0;
-  }
-
-  .cv-download {
-    font-size: 0.875rem;
-    color: var(--color-accent);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-
-  .cv-download:hover {
-    color: var(--color-accent-hover);
-    text-decoration: underline;
-  }
-
-  .cv-download:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-</style>

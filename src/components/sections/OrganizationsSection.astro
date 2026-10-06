@@ -10,20 +10,28 @@ interface Props {
 const { organizations } = Astro.props;
 ---
 
-<section id="organization" class="section">
+<section
+  id="organization"
+  class="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-6 sm:p-7"
+  aria-labelledby="organization-heading"
+>
   <SectionTitle title="Organization" id="organization-heading" />
 
-  <div class="entry-list">
+  <div class="space-y-6">
     {
       organizations.map((org) => (
         <EntryCard>
-          <div slot="header">
-            <h3 class="entry-title">{org.name}</h3>
-            <span class="entry-period">{org.period}</span>
-          </div>
-          <ul class="contribution-list" role="list">
+          <Fragment slot="header">
+            <h3 class="text-base sm:text-lg font-semibold text-slate-900 tracking-tight leading-snug">
+              {org.name}
+            </h3>
+            <span class="text-xs sm:text-sm font-medium text-slate-500 sm:text-right shrink-0">
+              {org.period}
+            </span>
+          </Fragment>
+          <ul class="space-y-2 mt-2 list-disc list-outside pl-4 text-sm text-slate-700 leading-relaxed" role="list">
             {org.contributions.map((item) => (
-              <li>{item}</li>
+              <li class="pl-1">{item}</li>
             ))}
           </ul>
         </EntryCard>
@@ -31,39 +39,3 @@ const { organizations } = Astro.props;
     }
   </div>
 </section>
-
-<style>
-  .section {
-    margin-bottom: var(--space-12);
-  }
-
-  .entry-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .entry-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-  }
-
-  .entry-period {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    white-space: nowrap;
-  }
-
-  .contribution-list {
-    list-style: disc;
-    padding-left: var(--space-6);
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--color-text-primary);
-  }
-</style>

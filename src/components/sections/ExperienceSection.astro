@@ -10,23 +10,31 @@ interface Props {
 const { experiences } = Astro.props;
 ---
 
-<section id="experience" class="section">
+<section
+  id="experience"
+  class="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-6 sm:p-7"
+  aria-labelledby="experience-heading"
+>
   <SectionTitle title="Experience" id="experience-heading" />
 
-  <div class="entry-list">
+  <div class="space-y-6">
     {
       experiences.map((exp) => (
         <EntryCard>
-          <div slot="header">
-            <h3 class="entry-title">{exp.role}</h3>
-            <span class="entry-period">{exp.period}</span>
-          </div>
+          <Fragment slot="header">
+            <h3 class="text-base sm:text-lg font-semibold text-slate-900 tracking-tight leading-snug">
+              {exp.role}
+            </h3>
+            <span class="text-xs sm:text-sm font-medium text-slate-500 sm:text-right shrink-0">
+              {exp.period}
+            </span>
+          </Fragment>
           <div slot="meta">
-            <p class="entry-org">{exp.organization}</p>
+            <p class="text-sm font-medium text-slate-600">{exp.organization}</p>
           </div>
-          <ul class="contribution-list" role="list">
+          <ul class="space-y-2 mt-2 list-disc list-outside pl-4 text-sm text-slate-700 leading-relaxed" role="list">
             {exp.contributions.map((item) => (
-              <li>{item}</li>
+              <li class="pl-1">{item}</li>
             ))}
           </ul>
         </EntryCard>
@@ -34,45 +42,3 @@ const { experiences } = Astro.props;
     }
   </div>
 </section>
-
-<style>
-  .section {
-    margin-bottom: var(--space-12);
-  }
-
-  .entry-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .entry-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-  }
-
-  .entry-period {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    white-space: nowrap;
-  }
-
-  .entry-org {
-    font-size: 0.9375rem;
-    color: var(--color-text-secondary);
-    margin: 0;
-  }
-
-  .contribution-list {
-    list-style: disc;
-    padding-left: var(--space-6);
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--color-text-primary);
-  }
-</style>

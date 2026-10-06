@@ -2,6 +2,7 @@
 import type { Project } from '../../types';
 import SectionTitle from '../ui/SectionTitle.astro';
 import ProjectList from '../ui/ProjectList.astro';
+import IconLink from '../ui/IconLink.astro';
 
 interface Props {
   projects: Project[];
@@ -12,25 +13,24 @@ interface Props {
 const { projects, allProjectsHref } = Astro.props;
 ---
 
-<section id="projects" class="section">
+<section
+  id="projects"
+  class="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-6 sm:p-7"
+  aria-labelledby="projects-heading"
+>
   <SectionTitle title="Projects" id="projects-heading" />
   <ProjectList projects={projects} />
   {
     allProjectsHref && (
-      <p class="all-projects">
-        <a href={allProjectsHref}>View all projects</a>
-      </p>
+      <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-end">
+        <IconLink
+          href={allProjectsHref}
+          label="View all projects"
+          text="View all projects"
+          icon="chevron-right"
+          iconPosition="right"
+        />
+      </div>
     )
   }
 </section>
-
-<style>
-  .section {
-    margin-bottom: var(--space-12);
-  }
-
-  .all-projects {
-    margin-top: var(--space-6);
-    font-size: 0.875rem;
-  }
-</style>

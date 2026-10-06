@@ -8,10 +8,19 @@ interface Props {
   text?: string;
   external?: boolean;
   icon?: IconName | string;
+  iconPosition?: 'left' | 'right';
   class?: string;
 }
 
-const { href, label, text, external = false, icon, class: className = '' } = Astro.props;
+const {
+  href,
+  label,
+  text,
+  external = false,
+  icon,
+  iconPosition = 'left',
+  class: className = '',
+} = Astro.props;
 
 const rel = external ? 'noopener noreferrer' : undefined;
 const target = external ? '_blank' : undefined;
@@ -22,10 +31,15 @@ const target = external ? '_blank' : undefined;
   aria-label={label}
   rel={rel}
   target={target}
-  class={`inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm ${className}`}
+  class={`inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-xs ${className}`}
 >
-  {icon && <Icon name={icon} class="w-4 h-4 shrink-0 text-blue-600" aria-hidden="true" />}
+  {icon && iconPosition === 'left' && (
+    <Icon name={icon} class="w-4 h-4 shrink-0 text-blue-600" aria-hidden="true" />
+  )}
   <span>{text ?? label}</span>
+  {icon && iconPosition === 'right' && (
+    <Icon name={icon} class="w-4 h-4 shrink-0 text-blue-600" aria-hidden="true" />
+  )}
   {external && !icon && (
     <Icon name="external-link" class="w-3.5 h-3.5 shrink-0 text-blue-500 opacity-80" aria-hidden="true" />
   )}
