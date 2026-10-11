@@ -10,6 +10,7 @@
       "Data Processing",
       "Capstone Project"
     ],
+    "documentationUrl": "https://github.com/sweetAware/",
     "featured": true
   },
   {
@@ -24,6 +25,7 @@
       "Data Visualization",
       "EDA"
     ],
+    "documentationUrl": "https://github.com/echaan/bike-sharing-analysis",
     "featured": true
   }
 ]
