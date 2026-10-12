@@ -11,6 +11,7 @@
       "Capstone Project"
     ],
     "documentationUrl": "https://github.com/sweetAware/",
+    "slidesPdf": "/assets/files/sweetaware-slides.pdf",
     "featured": true
   },
   {
@@ -26,6 +27,7 @@
       "EDA"
     ],
     "documentationUrl": "https://github.com/echaan/bike-sharing-analysis",
+    "slidesPdf": "/assets/files/bike-sharing-analysis-slides.pdf",
     "featured": true
   }
 ]

@@ -6,16 +6,22 @@ interface Props {
   projects: Project[];
   /** Pass true for each card that has a live case-study detail page. */
   hasCaseStudy?: boolean;
+  /** Pass true to show the "View Slides" button on cards (e.g. for master-detail viewer). */
+  showViewSlides?: boolean;
 }
 
-const { projects, hasCaseStudy = false } = Astro.props;
+const { projects, hasCaseStudy = false, showViewSlides = false } = Astro.props;
 ---
 
 <ul class="grid grid-cols-1 gap-5 sm:gap-6" role="list">
   {
     projects.map((project) => (
       <li>
-        <ProjectCard project={project} hasCaseStudy={hasCaseStudy} />
+        <ProjectCard
+          project={project}
+          hasCaseStudy={hasCaseStudy}
+          showViewSlides={showViewSlides}
+        />
       </li>
     ))
   }

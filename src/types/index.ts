@@ -76,6 +76,7 @@ export interface Project {
   description: string;
   tags: string[];
   documentationUrl?: string;
+  slidesPdf?: string;
   featured: boolean;
 }
 
