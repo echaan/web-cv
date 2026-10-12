@@ -19,9 +19,9 @@ const caseStudyHref = `/projects/${slug}`;
 
 <article
   id={slug}
-  class={`project-card bg-slate-50/70 rounded-xl border border-slate-200/90 p-5 sm:p-6 hover:border-slate-300 hover:bg-slate-50/90 transition-all duration-150 flex flex-col justify-between ${
+  class={`project-card relative bg-slate-50/70 rounded-xl border border-slate-200/90 p-5 sm:p-6 hover:border-slate-300 hover:bg-slate-50/90 transition-all duration-150 flex flex-col justify-between ${
     showViewSlides ? 'aria-[current=true]:border-blue-600 aria-[current=true]:bg-blue-50/40 aria-[current=true]:ring-1 aria-[current=true]:ring-blue-600' : ''
-  }`}
+  } ${showViewSlides ? 'cursor-pointer' : ''}`}
   data-project-slug={slug}
   data-project-title={title}
   data-slides-pdf={slidesPdf || ''}
@@ -39,7 +39,7 @@ const caseStudyHref = `/projects/${slug}`;
           href={documentationUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="p-2 text-blue-600 hover:text-blue-700 hover:bg-white rounded-lg border border-transparent hover:border-slate-200 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[40px] min-w-[40px] flex items-center justify-center shrink-0 motion-safe:hover:-translate-y-0.5"
+          class="relative z-20 p-2 text-blue-600 hover:text-blue-700 hover:bg-white rounded-lg border border-transparent hover:border-slate-200 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[40px] min-w-[40px] flex items-center justify-center shrink-0 motion-safe:hover:-translate-y-0.5"
           aria-label={`View documentation for ${title}`}
           title="View documentation"
         >
@@ -65,17 +65,12 @@ const caseStudyHref = `/projects/${slug}`;
     )}
 
     {showViewSlides && (
-      <div class="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between gap-3">
-        <button
-          type="button"
-          class="view-slides-btn inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg text-slate-700 bg-white border border-slate-200 hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50/50 active:bg-blue-100/70 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-blue-600 cursor-pointer min-h-[36px]"
-          data-target-slug={slug}
-          aria-label={`View slides for ${title}`}
-        >
-          <Icon name="file-text" class="w-3.5 h-3.5 text-slate-500 group-hover:text-blue-600" aria-hidden="true" />
-          <span>View Slides</span>
-        </button>
-      </div>
+      <button
+        type="button"
+        class="view-slides-btn absolute inset-0 z-10 w-full h-full rounded-xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-600 cursor-pointer"
+        data-target-slug={slug}
+        aria-label={`View slides for ${title}`}
+      />
     )}
 
     {hasCaseStudy && (
